@@ -84,6 +84,15 @@ class SiswaController extends Controller
             ->with('success', 'Data siswa berhasil diupdate');
     }
 
+    public function destroy($id)
+    {
+        $siswa = User::findOrFail($id);
+        $siswa->delete();
+
+        return redirect()->back()
+            ->with('success', 'Data berhasil dihapus');
+    }
+
     // ===============================
     // HAPUS SISWA
     // ===============================
@@ -103,22 +112,22 @@ class SiswaController extends Controller
     // ===============================
     public function import(Request $request)
     {
-    $import = new SiswaImport;
-    Excel::import($import, $request->file('file'));
+        $import = new SiswaImport;
+        Excel::import($import, $request->file('file'));
 
-    $success   = $import->success;
-    $duplicate = $import->duplicate;
+        $success   = $import->success;
+        $duplicate = $import->duplicate;
 
-    // 🔥 SATU NOTIF SAJA
-    if ($success > 0 && $duplicate > 0) {
-        $message = "Import selesai: $success berhasil, $duplicate gagal (email duplikat)";
-    } elseif ($success > 0) {
-        $message = "Import berhasil: $success data";
-    } else {
-        $message = "Import gagal: semua data duplikat";
+        // 🔥 SATU NOTIF SAJA
+        if ($success > 0 && $duplicate > 0) {
+            $message = "Import selesai: $success berhasil, $duplicate gagal (email duplikat)";
+        } elseif ($success > 0) {
+            $message = "Import berhasil: $success data";
+        } else {
+            $message = "Import gagal: semua data duplikat";
+        }
+
+        return redirect()->back()->with('success', $message);
     }
-
-    return redirect()->back()->with('success', $message);
-}
 
 }

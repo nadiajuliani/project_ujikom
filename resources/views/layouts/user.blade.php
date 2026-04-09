@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Ekstrakurikuler Web SMKN 1</title>
+    <title>Ekstrakurikuler SMK Assalaam Bandung</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -52,7 +52,7 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
         <div class="container text-center my-5 py-5">
-            <h1 class="text-white mt-4 mb-4">Ekstrakurikuler SMKN 1</h1>
+            <h1 class="text-white mt-4 mb-4">Ekstrakurikuler SMK Assalaam Bandung</h1>
             <h1 class="text-white display-1 mb-5">Daftar Ekstrakurikuler</h1>
             <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
                 <div class="input-group">

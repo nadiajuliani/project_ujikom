@@ -23,8 +23,8 @@ Route::prefix('admin')
     ->middleware(['auth', IsAdminMiddleware::class])
     ->group(function () {
 
-        Route::delete('/penerimaan/bulk-delete', [PenerimaanController::class, 'bulkDelete'])
-            ->name('penerimaan.bulkDelete');
+        Route::post('/siswa/bulk-delete', [SiswaController::class, 'bulkDelete'])
+            ->name('siswa.bulkDelete');
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

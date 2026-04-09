@@ -15,7 +15,6 @@
 
     <form action="{{ route('admin.siswa.bulkDelete') }}" method="POST">
         @csrf
-        @method('DELETE')
 
         <div class="mb-3">
             <button type="submit"

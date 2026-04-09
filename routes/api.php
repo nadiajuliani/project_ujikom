@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Models\Eskul;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,34 +12,21 @@ use App\Http\Controllers\Api\AuthController;
 |--------------------------------------------------------------------------
 */
 
-// LOGIN
-Route::post('/login', function (Request $request) {
+// ✅ LOGIN (PAKAI CONTROLLER BIAR ADA TOKEN)
+Route::post('/login', [AuthController::class, 'login']);
 
-    if (! Auth::attempt($request->only('email', 'password'))) {
-        return response()->json([
-            'message' => 'Login gagal',
-        ], 401);
-    }
-
-    return response()->json([
-        'message' => 'Login berhasil',
-        'user'    => Auth::user(),
-    ]);
-});
-
-
-// LOGOUT (pakai token)
+// ✅ LOGOUT (pakai token)
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:sanctum');
 
-// USER (harus login/token)
+// ✅ USER (harus login/token)
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return response()->json($request->user());
     });
 });
 
-// ambil data eskul
+// ✅ ambil data eskul
 Route::get('/eskul', function () {
     return Eskul::all();
 });
