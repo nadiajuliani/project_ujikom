@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Ekstrakurikuler Web SMKN 1</title>
+    <title>Ekstrakurikuler SMK Assalaam Bandung</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -30,7 +30,7 @@
 <body>
     <!-- Topbar Start -->
 <div class="container-fluid bg-dark">
-    
+
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
             {{ session('success') }}
@@ -44,9 +44,10 @@
     <div class="row py-2 px-lg-5">
         <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
             <div class="d-inline-flex align-items-center text-white">
-                <small><i class="fa fa-phone-alt mr-2"></i>+62 123 456 789</small>
+                <small><i class="fa fa-phone-alt mr-2"></i>0225420 - 220
+</small>
                 <small class="px-3">|</small>
-                <small><i class="fa fa-envelope mr-2"></i>234567634smkn1bandung.sch.id</small>
+                <small><i class="fa fa-envelope mr-2"></i>smkassalaambandung.sch.id</small>
             </div>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
@@ -62,17 +63,7 @@
 
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center my-5 py-5">
-            <h1 class="text-white mt-4 mb-4">Ekstrakurikuler SMKN 1</h1>
-            <h1 class="text-white display-1 mb-5">Daftar Ekstrakurikuler</h1>
-            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+
     <!-- Header End -->
 
 
@@ -142,54 +133,109 @@
         </div>
     @endguest
     @auth
-        <!-- Di bagian jadwal -->
-        <section id="jadwal">
-            <div class="container-fluid px-0 py-5">
-                <div class="row mx-0 justify-content-center pt-5">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center position-relative mb-4">
-                            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Jadwal Latihan
-                            </h6>
-                            <h1 class="display-4">Jadwal Latihan Ekstrakurikuler</h1>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tampilkan daftar jadwal -->
-                <div class="row">
-                    @foreach ($jadwal as $item)
-                        <div class="col-lg-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $item->eskul->nama_eskul }}</h5>
-                                    <p class="card-text">Hari: {{ $item->hari }}</p>
-                                    <p class="card-text">Jam: {{ $item->jam_mulai }} - {{ $item->jam_selesai }}</p>
-                                </div>
+        <section id="jadwal" class="py-5 bg-light">
+    <div class="container">
+
+        <!-- Judul -->
+        <div class="text-center mb-5">
+            <h6 class="text-primary text-uppercase mb-2">Jadwal Latihan</h6>
+            <h1 class="display-5 text-dark">Jadwal Latihan Ekstrakurikuler</h1>
+            <p class="text-muted">SMK Assalaam Bandung</p>
+        </div>
+
+        <!-- Grid Jadwal -->
+        <div class="row">
+
+            @forelse ($jadwal as $item)
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="card h-100 border-0 shadow rounded">
+
+                        <div class="card-body">
+
+                            <!-- Nama Eskul -->
+                            <h5 class="font-weight-bold text-dark mb-3">
+                                {{ $item->eskul->nama_eskul }}
+                            </h5>
+
+                            <hr>
+
+                            <!-- Hari -->
+                            <p class="mb-2">
+                                <span class="badge badge-primary px-3 py-2">
+                                    {{ $item->hari }}
+                                </span>
+                            </p>
+
+                            <hr>
+
+                            <!-- Waktu -->
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">Waktu</small>
+                                <small class="text-primary font-weight-bold">
+                                    {{ $item->jam_mulai }} - {{ $item->jam_selesai }}
+                                </small>
                             </div>
+
+                            <!-- Durasi -->
+                            <div class="d-flex justify-content-between mt-2 pt-2 border-top">
+                                <small class="text-muted">Durasi</small>
+                                <small class="font-weight-bold text-dark">
+                                    @php
+                                        $start = \Carbon\Carbon::parse($item->jam_mulai);
+                                        $end = \Carbon\Carbon::parse($item->jam_selesai);
+                                        echo $start->diffInMinutes($end) . ' menit';
+                                    @endphp
+                                </small>
+                            </div>
+
                         </div>
-                    @endforeach
+
+                    </div>
+
                 </div>
-            </div>
-        </section>
+            @empty
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">Belum ada jadwal latihan yang tersedia.</p>
+                </div>
+            @endforelse
+
+        </div>
+    </div>
+</section>
 
         <!-- Di bagian form daftar -->
-        <<section id="form" class="py-5 bg-light">
-            <div class="container">
-                <div class="section-title text-center position-relative mb-4">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Formulir</h6>
-                    <h1 class="display-4">Form Pendaftaran Ekstrakurikuler</h1>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
+        <section id="form" class="py-5 bg-white">
+    <div class="container">
+
+        <!-- Judul -->
+        <div class="text-center mb-5">
+            <h6 class="text-primary text-uppercase mb-2">Formulir</h6>
+            <h1 class="display-5 text-dark">Form Pendaftaran Ekstrakurikuler</h1>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <!-- CARD FORM -->
+                <div class="card border-0 shadow rounded-lg">
+                    <div class="card-body p-5">
+
                         <form action="{{ route('daftar.eskul.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <label for="eskul_id">Nama</label>
-                                <input type="disabled" name="nama" id="nama" class="form-control rounded-pill"
-                                    value="{{ auth()->user()->name }}" required readonly>
+
+                            <!-- Nama -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">Nama</label>
+                                <input type="text" name="nama"
+                                    class="form-control rounded-pill"
+                                    value="{{ auth()->user()->name }}" readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="eskul_id">Pilih Ekstrakurikuler</label>
-                                <select name="eskul_id" id="eskul_id" class="form-control rounded-pill" required>
+
+                            <!-- Eskul -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">Pilih Ekstrakurikuler</label>
+                                <select name="eskul_id" class="form-control rounded-pill" required>
                                     <option value="">-- Pilih --</option>
                                     @foreach ($eskul as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_eskul }}</option>
@@ -197,15 +243,18 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="kelas">Kelas</label>
-                                <input type="text" name="kelas" id="kelas" class="form-control rounded-pill"
+                            <!-- Kelas -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">Kelas</label>
+                                <input type="text" name="kelas"
+                                    class="form-control rounded-pill"
                                     placeholder="Contoh: XI RPL 1" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="tahun_ajaran">Tahun Ajaran</label>
-                                <select name="tahun_ajaran" id="tahun_ajaran" class="form-control rounded-pill" required>
+                            <!-- Tahun Ajaran -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">Tahun Ajaran</label>
+                                <select name="tahun_ajaran" class="form-control rounded-pill" required>
                                     <option value="">-- Pilih --</option>
                                     @foreach ($tahunAjaran as $item)
                                         <option value="{{ $item }}">{{ $item }}</option>
@@ -213,26 +262,41 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label for="no_telp">No. Telepon</label>
-                                <input type="text" name="no_telp" id="no_telp" class="form-control rounded-pill"
+                            <!-- No Telp -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">No. Telepon</label>
+                                <input type="text" name="no_telp"
+                                    class="form-control rounded-pill"
                                     placeholder="Opsional">
                             </div>
 
-                            <div class="form-group">
-                                <label for="alasan">Alasan Mengikuti Ekstrakurikuler</label>
-                                <textarea name="alasan" id="alasan" class="form-control" rows="3" placeholder="Opsional"></textarea>
+                            <!-- Alasan -->
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold">Alasan Mengikuti</label>
+                                <textarea name="alasan"
+                                    class="form-control rounded"
+                                    rows="3"
+                                    placeholder="Opsional"></textarea>
                             </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary rounded-pill px-5 py-2">Daftar
-                                    Sekarang</button>
+                            <!-- Button -->
+                            <div class="text-center mt-4">
+                                <button type="submit"
+                                    class="btn btn-primary btn-lg rounded-pill px-5 shadow">
+                                    Daftar Sekarang
+                                </button>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
+                <!-- END CARD -->
+
             </div>
-            </section>
+        </div>
+    </div>
+</section>
         @endauth
         <!-- Footer Start -->
         @include('layouts.userassets.footer')

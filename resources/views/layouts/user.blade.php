@@ -50,17 +50,7 @@
 
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center my-5 py-5">
-            <h1 class="text-white mt-4 mb-4">Ekstrakurikuler SMK Assalaam Bandung</h1>
-            <h1 class="text-white display-1 mb-5">Daftar Ekstrakurikuler</h1>
-            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Header End -->
 
 
@@ -105,39 +95,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
-        <div class="container mt-5 pt-5">
-            <div class="row">
-                <div class="col-md-6 mb-5">
-                    <a href="index.html" class="navbar-brand">
-                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>SMKN 1</h1>
-                    </a>
-                    <p class="m-0">SMKN 1 adalah Sekolah Menengah Kejuruan yang berfokus pada pengembangan keahlian siswa di bidang teknologi, bisnis, dan industri kreatif. Dengan fasilitas lengkap dan tenaga pengajar profesional, SMKN 1 berkomitmen mencetak lulusan yang siap kerja, unggul dalam kompetensi, dan berdaya saing global.</p>
-                </div>
-                        
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Get In Touch</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"></i>Jl. Dago Atas No. 9, Kel. Dago, Kec. Coblong, Kota Bandung</p>
-                    <p><i class="fa fa-phone-alt mr-2"></i>+62 123 456 789</p>
-                    <p><i class="fa fa-envelope mr-2"></i>234567634@smkn1bandung.sch.id</p>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">SMKN 1</a>. All Rights Reserved.
-                    </p>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    
     <!-- Footer End -->
 
 
