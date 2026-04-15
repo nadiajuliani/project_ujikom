@@ -23,9 +23,6 @@ Route::prefix('admin')
     ->middleware(['auth', IsAdminMiddleware::class])
     ->group(function () {
 
-        Route::post('/siswa/bulk-delete', [SiswaController::class, 'bulkDelete'])
-            ->name('siswa.bulkDelete');
-
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('/filter-tahun', function (Request $request) {
@@ -33,26 +30,22 @@ Route::prefix('admin')
             return redirect()->back();
         })->name('filter.tahun');
 
+        // Siswa
+        Route::resource('siswa', SiswaController::class);
+        Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
+        Route::delete('/siswa/bulk-delete', [SiswaController::class, 'bulkDelete'])->name('siswa.bulkDelete');
+
+        // Template Export
         Route::get('/siswa/template', function () {
             return Excel::download(new SiswaTemplateExport, 'template_siswa.xlsx');
         })->name('siswa.template');
 
-        Route::resource('siswa', SiswaController::class);
-
-        Route::post('/siswa/import', [SiswaController::class, 'import'])
-            ->name('siswa.import');
-
-        Route::delete('/siswa/bulk-delete', [SiswaController::class, 'bulkDelete'])
-            ->name('siswa.bulkDelete');
-
-        Route::resource('eskul', EskulController::class);
-        Route::resource('jadwal', JadwalController::class);
-
-        Route::resource('daftar_eskul', DaftarEskulController::class)->parameters([
-            'daftar_eskul' => 'daftar_Eskul',
-        ]);
-
+        // Penerimaan (Sudah diperbaiki)
         Route::resource('penerimaan', PenerimaanController::class);
+
+        // Bulk Delete Penerimaan ← INI YANG DITAMBAHKAN
+        Route::post('/penerimaan/bulk-delete', [PenerimaanController::class, 'bulkDelete'])
+            ->name('penerimaan.bulkDelete');
 
         Route::post('/penerimaan/{id}/approve', [PenerimaanController::class, 'approve'])
             ->name('penerimaan.approve');
@@ -65,6 +58,14 @@ Route::prefix('admin')
 
         Route::post('/penerimaan/reject-menunggu', [PenerimaanController::class, 'rejectMenunggu'])
             ->name('penerimaan.rejectMenunggu');
+
+        // Eskul & Jadwal
+        Route::resource('eskul', EskulController::class);
+        Route::resource('jadwal', JadwalController::class);
+
+        Route::resource('daftar_eskul', DaftarEskulController::class)->parameters([
+            'daftar_eskul' => 'daftar_Eskul',
+        ]);
     });
 
 Route::middleware(['auth'])->group(function () {
